@@ -8,7 +8,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, 'lib'),
     filename: 'index.js',
-    library: 'seed',
+    library: 'TileMap',
     libraryTarget: 'umd'
   },
   resolve: {

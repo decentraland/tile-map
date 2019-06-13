@@ -1,0 +1,47 @@
+.react-tile-map {
+  position: relative;
+}
+
+.react-tile-map-canvas.clickable {
+  cursor: pointer;
+}
+
+.react-tile-map-canvas.draggable {
+  cursor: move; /* fallback if grab cursor is unsupported */
+  cursor: grab;
+  cursor: -moz-grab;
+  cursor: -webkit-grab;
+}
+
+.react-tile-map-canvas.draggable:active {
+  cursor: grabbing;
+  cursor: -moz-grabbing;
+  cursor: -webkit-grabbing;
+}
+
+.react-tile-map-canvasPopup {
+  position: absolute;
+  pointer-events: none;
+}
+
+.react-tile-map-popup {
+  width: 100%;
+  margin-left: -50%;
+  border-radius: 4px;
+  background-color: rgba(0, 0, 0, 0.7);
+  box-shadow: 0 3px 14px rgba(0, 0, 0, 0.4);
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.react-tile-map-popup.move-left {
+  padding-left: 100%;
+}
+
+.react-tile-map-popup.move-right {
+  padding-left: 0%;
+}
+
+.react-tile-map-popup.visible {
+  opacity: 1;
+}

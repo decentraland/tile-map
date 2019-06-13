@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "paths": { "*": ["types/*"] },
     "outDir": "lib",
     "module": "commonjs",
     "target": "es5",
@@ -8,7 +9,7 @@
     "allowJs": false,
     "jsx": "react",
     "moduleResolution": "node",
-    "rootDirs": ["src", ".storybook"],
+    "rootDirs": ["src", ".storybook", "stories"],
     "baseUrl": "src",
     "forceConsistentCasingInFileNames": true,
     "noImplicitReturns": true,
@@ -22,6 +23,6 @@
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true
   },
-  "include": ["src/**/*"],
+  "include": ["src/**/*", "stories"],
   "exclude": ["node_modules", "build", "scripts"]
 }
