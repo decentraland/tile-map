@@ -11,19 +11,7 @@ export function renderTile(args: {
   topLeft?: boolean
   scale?: number
 }) {
-  const {
-    ctx,
-    x,
-    y,
-    size,
-    padding,
-    offset,
-    color,
-    left,
-    top,
-    topLeft,
-    scale
-  } = args
+  const { ctx, x, y, size, padding, offset, color, left, top, topLeft, scale } = args
 
   ctx.fillStyle = color
 

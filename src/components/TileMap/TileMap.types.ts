@@ -10,9 +10,9 @@ export type Props = {
   x: number
   /** where to position the map in the Y axis */
   y: number
-  /** where to position the map in the X axis */
+  /** where to initially position the map in the X axis */
   initialX: number
-  /** where to position the map in the Y axis */
+  /** where to initially position the map in the Y axis */
   initialY: number
   /** size of each parcel, i.e: size=5 makes each parcel of 5x5 pixels */
   size: number
@@ -49,12 +49,7 @@ export type Props = {
     left: number
     visible: boolean
   }) => void
-  onChange?: (data: {
-    center: Coord
-    nw: Coord
-    se: Coord
-    zoom: number
-  }) => void
+  onChange?: (data: { center: Coord; nw: Coord; se: Coord; zoom: number }) => void
 }
 
 export type State = Viewport & {
