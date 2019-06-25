@@ -100,12 +100,7 @@ export class TileMap extends React.PureComponent<Props, State> {
       newState.se.y !== this.oldState.se.y
 
     // The coords or the amount of parcels changed, so we need to update the state
-    if (
-      nextProps.x !== x ||
-      nextProps.y !== y ||
-      !this.oldState ||
-      isViewportDifferent
-    ) {
+    if (nextProps.x !== x || nextProps.y !== y || !this.oldState || isViewportDifferent) {
       this.oldState = newState
       this.setState(newState)
       this.debouncedHandleChange()
@@ -179,16 +174,7 @@ export class TileMap extends React.PureComponent<Props, State> {
 
   handlePanZoom = (args: { dx: number; dy: number; dz: number }) => {
     const { dx, dy, dz } = args
-    const {
-      size,
-      maxSize,
-      minSize,
-      minX,
-      maxX,
-      minY,
-      maxY,
-      padding
-    } = this.props
+    const { size, maxSize, minSize, minX, maxX, minY, maxY, padding } = this.props
     const { pan, zoom } = this.state
 
     const maxZoom = maxSize / size

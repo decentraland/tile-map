@@ -12,8 +12,6 @@ delete resizableDefaultProps.height
 export class ResizableTileMap extends React.PureComponent<ResizableProps> {
   static defaultProps = resizableDefaultProps
   render() {
-    return (
-      <AutoSizer>{props => <TileMap {...props} {...this.props} />}</AutoSizer>
-    )
+    return <AutoSizer>{props => <TileMap {...props} {...this.props} />}</AutoSizer>
   }
 }

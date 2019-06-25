@@ -20,8 +20,5 @@ const hoverLayer: Layer = (x, y) => {
 }
 
 storiesOf('TileMap', module).add('3. Hover', () => (
-  <TileMap
-    layers={[positiveLayer, hoverLayer]}
-    onHover={(x, y) => (hover = { x, y })}
-  />
+  <TileMap layers={[positiveLayer, hoverLayer]} onHover={(x, y) => (hover = { x, y })} />
 ))

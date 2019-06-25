@@ -15,8 +15,5 @@ const clickedLayer: Layer = (x, y) => {
 }
 
 storiesOf('TileMap', module).add('4. Click', () => (
-  <TileMap
-    layers={[clickedLayer]}
-    onClick={(x, y) => selected.push({ x, y })}
-  />
+  <TileMap layers={[clickedLayer]} onClick={(x, y) => selected.push({ x, y })} />
 ))

@@ -3,6 +3,7 @@ import * as React from 'react'
 import { storiesOf } from '@storybook/react'
 import { TileMap, Layer, Coord } from '../src'
 
+// prettier-ignore
 const selected: Coord[] = [
   { x: 0, y: 0 },
   { x: 0, y: 1 },

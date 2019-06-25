@@ -11,6 +11,4 @@ const simpleLayer: Layer = (x, y) => {
   }
 }
 
-storiesOf('TileMap', module).add('0. Basic', () => (
-  <TileMap layers={[simpleLayer]} />
-))
+storiesOf('TileMap', module).add('0. Basic', () => <TileMap layers={[simpleLayer]} />)

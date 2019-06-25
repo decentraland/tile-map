@@ -49,12 +49,7 @@ export type Props = {
     left: number
     visible: boolean
   }) => void
-  onChange?: (data: {
-    center: Coord
-    nw: Coord
-    se: Coord
-    zoom: number
-  }) => void
+  onChange?: (data: { center: Coord; nw: Coord; se: Coord; zoom: number }) => void
 }
 
 export type State = Viewport & {

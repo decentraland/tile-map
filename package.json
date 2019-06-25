@@ -46,5 +46,10 @@
   "peerDependencies": {
     "react": "^16.8.6",
     "react-dom": "^16.8.6"
+  },
+  "prettier": {
+    "semi": false,
+    "singleQuote": true,
+    "printWidth": 90
   }
 }
