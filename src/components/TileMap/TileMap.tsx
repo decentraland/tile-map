@@ -57,7 +57,7 @@ export class TileMap extends React.PureComponent<Props, State> {
         y: y == null ? initialY : y
       },
       size: zoom * size,
-      zoom: zoom,
+      zoom,
       popup: null
     }
     this.state = this.generateState(props, initialState)
