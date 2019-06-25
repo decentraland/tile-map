@@ -10,9 +10,9 @@ export type Props = {
   x: number
   /** where to position the map in the Y axis */
   y: number
-  /** where to position the map in the X axis */
+  /** where to initially position the map in the X axis */
   initialX: number
-  /** where to position the map in the Y axis */
+  /** where to initially position the map in the Y axis */
   initialY: number
   /** size of each parcel, i.e: size=5 makes each parcel of 5x5 pixels */
   size: number
@@ -20,7 +20,11 @@ export type Props = {
   width: number
   /** height of the canvas in pixels */
   height: number
-  /** zoom level of the map, this changes in the end the size on which parcels are rendered, i.e: size=10 and zoom=0.5 makes each parcel of 5x5 pixels */
+  /**
+   * zoom level of the map, this changes in the end the size on which parcels are rendered, i.e: size=10 and zoom=0.5 makes each parcel of 5x5 pixels
+   *
+   * when controlling the zoom, make sure to update its upstream value based on the data provided by the onChange listener
+   */
   zoom: number
   /** min and max values for x and y (ie. the map boundaries) */
   minX: number

@@ -36,7 +36,6 @@ export class TileMap extends React.PureComponent<Props, State> {
 
   private oldState: State
   private canvas: HTMLCanvasElement | null
-  private shouldRefreshMap: boolean
   private mounted: boolean
   private hover: Coord | null
   private popupTimeout: number | null
@@ -58,12 +57,11 @@ export class TileMap extends React.PureComponent<Props, State> {
         y: y == null ? initialY : y
       },
       size: zoom * size,
-      zoom,
+      zoom: zoom,
       popup: null
     }
     this.state = this.generateState(props, initialState)
     this.oldState = this.state
-    this.shouldRefreshMap = false
     this.hover = null
     this.mounted = false
     this.canvas = null
@@ -97,7 +95,8 @@ export class TileMap extends React.PureComponent<Props, State> {
       newState.nw.x !== this.oldState.nw.x ||
       newState.nw.y !== this.oldState.nw.y ||
       newState.se.x !== this.oldState.se.x ||
-      newState.se.y !== this.oldState.se.y
+      newState.se.y !== this.oldState.se.y ||
+      newState.zoom !== this.oldState.zoom
 
     // The coords or the amount of parcels changed, so we need to update the state
     if (nextProps.x !== x || nextProps.y !== y || !this.oldState || isViewportDifferent) {
@@ -107,13 +106,22 @@ export class TileMap extends React.PureComponent<Props, State> {
     }
   }
 
-  componentDidUpdate() {
-    if (this.shouldRefreshMap) {
-      this.shouldRefreshMap = false
-      this.renderMap()
-    } else {
-      this.debouncedRenderMap()
+  componentWillReceiveProps(nextProps: Props) {
+    const { zoom, maxSize, minSize, size } = nextProps
+    const maxZoom = maxSize / size
+    const minZoom = minSize / size
+    const newZoom = Math.max(minZoom, Math.min(maxZoom, zoom))
+
+    if (newZoom !== this.props.zoom && newZoom !== this.state.zoom) {
+      this.setState({
+        zoom: newZoom,
+        size: this.props.size * newZoom
+      })
     }
+  }
+
+  componentDidUpdate() {
+    this.debouncedRenderMap()
     this.oldState = this.state
   }
 
@@ -380,22 +388,6 @@ export class TileMap extends React.PureComponent<Props, State> {
   handleTarget = () => {
     const { x, y } = this.props
     this.setState({ center: { x, y } })
-  }
-
-  handleZoomIn = () => {
-    this.handlePanZoom({
-      dx: 0,
-      dy: 0,
-      dz: -1 * this.getDz()
-    })
-  }
-
-  handleZoomOut = () => {
-    this.handlePanZoom({
-      dx: 0,
-      dy: 0,
-      dz: this.getDz()
-    })
   }
 
   getDz() {
