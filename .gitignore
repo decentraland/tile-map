@@ -1,3 +1,5 @@
+*.d.ts
+*.js
+*.css
 node_modules
 storybook-static
-lib
