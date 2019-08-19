@@ -31,7 +31,8 @@ export class TileMap extends React.PureComponent<Props, State> {
     panX: 0,
     panY: 0,
     padding: 4,
-    isDraggable: true
+    isDraggable: true,
+    renderMap: renderMap
   }
 
   private oldState: State
@@ -259,7 +260,7 @@ export class TileMap extends React.PureComponent<Props, State> {
       return
     }
 
-    const { onClick } = this.props
+    const { onClick, onMouseUp } = this.props
     if (onClick) {
       const elapsed = Date.now() - this.mousedownTimestamp!
       if (elapsed < 200) {
@@ -267,10 +268,23 @@ export class TileMap extends React.PureComponent<Props, State> {
         this.renderMap()
       }
     }
+    if (onMouseUp) {
+      onMouseUp(x, y)
+      this.renderMap()
+    }
   }
 
-  handleMouseDown = () => {
+  handleMouseDown = (event: MouseEvent) => {
+    const { onMouseDown } = this.props
     this.mousedownTimestamp = Date.now()
+    if (onMouseDown) {
+      const [x, y] = this.mouseToCoords(event.layerX, event.layerY)
+      if (!this.inBounds(x, y)) {
+        return
+      }
+      onMouseDown(x, y)
+      this.renderMap()
+    }
   }
 
   handleMouseMove = (event: MouseEvent) => {
@@ -364,7 +378,7 @@ export class TileMap extends React.PureComponent<Props, State> {
       return
     }
 
-    const { width, height, layers } = this.props
+    const { width, height, layers, renderMap } = this.props
     const { nw, se, pan, size, center } = this.state
     const ctx = this.canvas.getContext('2d')!
 

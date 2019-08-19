@@ -40,6 +40,8 @@ export type Props = {
   /** amount of padding tiles */
   padding: number
   /** callbacks */
+  onMouseDown?: (x: number, y: number) => void
+  onMouseUp?: (x: number, y: number) => void
   onClick?: (x: number, y: number) => void
   onHover?: (x: number, y: number) => void
   onPopup?: (args: {
@@ -50,6 +52,8 @@ export type Props = {
     visible: boolean
   }) => void
   onChange?: (data: { center: Coord; nw: Coord; se: Coord; zoom: number }) => void
+  /** renderer */
+  renderMap: MapRenderer
 }
 
 export type State = Viewport & {
@@ -67,3 +71,15 @@ export type Popup = {
   left: number
   visible: boolean
 }
+
+export type MapRenderer = (args: {
+  ctx: CanvasRenderingContext2D
+  width: number
+  height: number
+  size: number
+  pan: Coord
+  nw: Coord
+  se: Coord
+  center: Coord
+  layers: Layer[]
+}) => void
