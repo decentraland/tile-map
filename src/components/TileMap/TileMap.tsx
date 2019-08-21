@@ -182,6 +182,7 @@ export class TileMap extends React.PureComponent<Props, State> {
   }
 
   handlePanZoom = (args: { dx: number; dy: number; dz: number }) => {
+    if (!this.props.isDraggable) return
     const { dx, dy, dz } = args
     const { size, maxSize, minSize, minX, maxX, minY, maxY, padding } = this.props
     const { pan, zoom } = this.state
