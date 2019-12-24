@@ -69,7 +69,7 @@ export class TileMap extends React.PureComponent<Props, State> {
     this.popupTimeout = null
   }
 
-  componentWillUpdate(nextProps: Props, nextState: State) {
+  UNSAFE_componentWillUpdate(nextProps: Props, nextState: State) {
     const { x, y } = this.props
 
     if (
@@ -107,7 +107,7 @@ export class TileMap extends React.PureComponent<Props, State> {
     }
   }
 
-  componentWillReceiveProps(nextProps: Props) {
+  UNSAFE_componentWillReceiveProps(nextProps: Props) {
     const { zoom, maxSize, minSize, size } = nextProps
     const maxZoom = maxSize / size
     const minZoom = minSize / size
