@@ -9,18 +9,18 @@ module.exports = {
     path: path.resolve(__dirname, 'lib'),
     filename: 'index.js',
     library: 'TileMap',
-    libraryTarget: 'umd'
+    libraryTarget: 'umd',
   },
   resolve: {
-    extensions: ['.ts', '.tsx', '.js', '.jsx']
+    extensions: ['.ts', '.tsx', '.js', '.jsx'],
   },
   externals: {
     react: {
       commonjs: 'react',
       commonjs2: 'react',
       amd: 'react',
-      root: 'React'
-    }
+      root: 'React',
+    },
   },
   module: {
     rules: [
@@ -32,23 +32,28 @@ module.exports = {
           {
             loader: 'postcss-loader',
             options: {
-              ident: 'postcss',
-              plugins: () => [
-                postcssPresetEnv({
-                  stage: 4
-                })
-              ]
-            }
-          }
-        ]
+              postcssOptions: {
+                ident: 'postcss',
+                plugins: [
+                  [
+                    'postcss-preset-env',
+                    {
+                      stage: 4,
+                    },
+                  ],
+                ],
+              },
+            },
+          },
+        ],
       },
       {
         test: /\.tsx?$/,
-        use: ['ts-loader']
+        use: ['ts-loader'],
       },
       {
         test: /\.(woff|woff2|eot|ttf|otf)$/,
-        use: ['file-loader']
+        use: ['file-loader'],
       },
       {
         test: /\.(png|svg|jpg|gif)$/,
@@ -56,16 +61,16 @@ module.exports = {
           {
             loader: 'url-loader',
             options: {
-              limit: 8192
-            }
-          }
-        ]
-      }
-    ]
+              limit: 8192,
+            },
+          },
+        ],
+      },
+    ],
   },
   plugins: [
     new MiniCssExtractPlugin({
-      filename: 'styles.css'
-    })
-  ]
+      filename: 'styles.css',
+    }),
+  ],
 }
