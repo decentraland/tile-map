@@ -11,6 +11,11 @@ import './TileMap.css'
 
 const MOBILE_WIDTH = 768
 
+type MouseEventWithDeprecatedLayerXAndY = MouseEvent & {
+  layerX: number
+  layerY: number
+}
+
 export class TileMap extends React.PureComponent<Props, State> {
   static defaultProps = {
     x: 0,
@@ -32,6 +37,7 @@ export class TileMap extends React.PureComponent<Props, State> {
     panY: 0,
     padding: 4,
     isDraggable: true,
+    layers: [],
     renderMap: renderMap
   }
 
@@ -255,7 +261,7 @@ export class TileMap extends React.PureComponent<Props, State> {
     return [coordX, coordY]
   }
 
-  handleClick = (event: MouseEvent) => {
+  handleClick = (event: MouseEventWithDeprecatedLayerXAndY) => {
     const [x, y] = this.mouseToCoords(event.layerX, event.layerY)
     if (!this.inBounds(x, y)) {
       return
@@ -275,7 +281,7 @@ export class TileMap extends React.PureComponent<Props, State> {
     }
   }
 
-  handleMouseDown = (event: MouseEvent) => {
+  handleMouseDown = (event: MouseEventWithDeprecatedLayerXAndY) => {
     const { onMouseDown } = this.props
     this.mousedownTimestamp = Date.now()
     if (onMouseDown) {
@@ -288,7 +294,7 @@ export class TileMap extends React.PureComponent<Props, State> {
     }
   }
 
-  handleMouseMove = (event: MouseEvent) => {
+  handleMouseMove = (event: MouseEventWithDeprecatedLayerXAndY) => {
     const { layerX, layerY } = event
     const [x, y] = this.mouseToCoords(layerX, layerY)
     if (!this.inBounds(x, y)) {
