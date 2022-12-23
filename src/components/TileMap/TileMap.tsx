@@ -37,6 +37,7 @@ export class TileMap extends React.PureComponent<Props, State> {
     panY: 0,
     padding: 4,
     isDraggable: true,
+    layers: [],
     renderMap: renderMap
   }
 
