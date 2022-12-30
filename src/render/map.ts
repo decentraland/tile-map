@@ -1,7 +1,7 @@
 import {
   addClippingContextForTileStrike,
   buildStrikethroughPattern,
-  finishClipping,
+  finishClippingForTileStrike,
   initializeContextForTileStrike,
   renderTile,
 } from './tile'
@@ -18,9 +18,13 @@ export function renderMap(args: {
   se: Coord
   center: Coord
   layers: Layer[]
+  zoom: number
 }) {
   const { ctx, strikeCanvasCtx, width, height, size, pan, nw, se, center, layers } = args
+  // Creates the strikethrough pattern that will be used to draw the strikethrough in the tiles.
+  // The scale is set to 1 as scaling the pattern makes it very difficult to be used into a repeatable pattern.
   const strikethroughPattern = buildStrikethroughPattern(ctx, 1)
+  // Sets up the clipping region to be used in the strike process.
   let clippingRegion: Path2D
   ctx.clearRect(0, 0, width, height)
 
@@ -28,6 +32,7 @@ export function renderMap(args: {
   const halfHeight = height / 2
 
   for (const layer of layers) {
+    // Initializes the strike canvas and its context
     clippingRegion = initializeContextForTileStrike(strikeCanvasCtx, width, height)
     let hasStrikeTile = false
     for (let x = nw.x; x < se.x; x++) {
@@ -59,6 +64,7 @@ export function renderMap(args: {
 
         if (strikethrough) {
           hasStrikeTile = true
+          // Adds the rectangles figures to the clipping region to later clip everything outside of those regions
           addClippingContextForTileStrike({
             ctx: strikeCanvasCtx,
             region: clippingRegion,
@@ -76,7 +82,14 @@ export function renderMap(args: {
       }
     }
     if (strikethroughPattern && hasStrikeTile) {
-      finishClipping(strikeCanvasCtx, clippingRegion, strikethroughPattern, width, height)
+      // Applies the pattern and clips the regions to produce the strike pattern over the tiles.
+      finishClippingForTileStrike(
+        strikeCanvasCtx,
+        clippingRegion,
+        strikethroughPattern,
+        width,
+        height
+      )
     }
     // Draw the strike pattern
     if (

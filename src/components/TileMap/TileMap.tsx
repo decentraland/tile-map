@@ -390,7 +390,7 @@ export class TileMap extends React.PureComponent<Props, State> {
     }
 
     const { width, height, layers, renderMap } = this.props
-    const { nw, se, pan, size, center } = this.state
+    const { nw, se, pan, size, center, zoom } = this.state
     this.strikeCanvas.width = width
     this.strikeCanvas.height = height
     const ctx = this.canvas.getContext('2d')!
@@ -406,6 +406,7 @@ export class TileMap extends React.PureComponent<Props, State> {
       se,
       center,
       layers,
+      zoom,
     })
   }
 

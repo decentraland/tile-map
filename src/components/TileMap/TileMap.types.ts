@@ -83,4 +83,5 @@ export type MapRenderer = (args: {
   se: Coord
   center: Coord
   layers: Layer[]
+  zoom: number
 }) => void
