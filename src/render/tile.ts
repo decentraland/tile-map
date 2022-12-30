@@ -82,15 +82,15 @@ export function buildStrikethroughPattern(
   const numberOfStripes = patternCanvas.width / thickness
   patternContext.globalAlpha = 0.3
 
+  patternContext.beginPath()
   for (var i = 0; i < numberOfStripes * 2; i += 2) {
-    patternContext.beginPath()
     patternContext.strokeStyle = blackColor
     patternContext.lineWidth = thickness / 1.5
     patternContext.lineCap = 'square'
     patternContext.moveTo(i * thickness + thickness / 2 - patternCanvas.width, 0)
     patternContext.lineTo(i * thickness + thickness / 2, patternCanvas.width)
-    patternContext.stroke()
   }
+  patternContext.stroke()
 
   return ctx.createPattern(patternCanvas, 'repeat')
 }
