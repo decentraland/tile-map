@@ -11,4 +11,5 @@ export type Tile = {
   left?: boolean
   topLeft?: boolean
   scale?: number
+  strikethrough?: boolean
 }

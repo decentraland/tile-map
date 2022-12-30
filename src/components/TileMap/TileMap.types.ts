@@ -74,6 +74,7 @@ export type Popup = {
 
 export type MapRenderer = (args: {
   ctx: CanvasRenderingContext2D
+  strikeCanvasCtx: CanvasRenderingContext2D
   width: number
   height: number
   size: number
@@ -82,4 +83,5 @@ export type MapRenderer = (args: {
   se: Coord
   center: Coord
   layers: Layer[]
+  zoom: number
 }) => void
