@@ -1,8 +1,6 @@
 import * as React from 'react'
-
 import { storiesOf } from '@storybook/react'
-// @ts-ignore
-import { withKnobs, number } from '@storybook/addon-knobs'
+import { number } from '@storybook/addon-knobs'
 
 import { TileMap, Layer } from '../src'
 
@@ -27,8 +25,6 @@ async function loadTiles() {
 loadTiles().catch(console.error)
 
 const stories = storiesOf('TileMap', module)
-
-stories.addDecorator(withKnobs)
 
 export const COLOR_BY_TYPE = Object.freeze({
   0: '#ff9990', // my parcels
