@@ -6,4 +6,7 @@ export const parameters = {
       date: /Date$/,
     },
   },
+  options: {
+    storySort: (a, b) => Number.parseInt(a[1].name) - Number.parseInt(b[1].name)
+  }
 }

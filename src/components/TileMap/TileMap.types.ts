@@ -39,6 +39,8 @@ export type Props = {
   isDraggable: boolean
   /** amount of padding tiles */
   padding: number
+  /** whether the zoom controls should appear */
+  withZoomControls: boolean
   /** callbacks */
   onMouseDown?: (x: number, y: number) => void
   onMouseUp?: (x: number, y: number) => void
