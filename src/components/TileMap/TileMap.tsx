@@ -77,7 +77,7 @@ export class TileMap extends React.PureComponent<Props, State> {
   }
 
   UNSAFE_componentWillUpdate(nextProps: Props, nextState: State) {
-    const { x, y } = this.props
+    const { x, y, onCenterChange } = this.props
 
     if (
       (x !== nextProps.x || y !== nextProps.y) &&
@@ -109,7 +109,11 @@ export class TileMap extends React.PureComponent<Props, State> {
     // The coords or the amount of parcels changed, so we need to update the state
     if (nextProps.x !== x || nextProps.y !== y || !this.oldState || isViewportDifferent) {
       this.oldState = newState
-      this.setState(newState)
+      this.setState(newState, () => {
+        if (onCenterChange) {
+          onCenterChange(nextState.center)
+        }
+      })
       this.debouncedHandleChange()
     }
   }
@@ -366,6 +370,7 @@ export class TileMap extends React.PureComponent<Props, State> {
 
   updateCenter() {
     const { pan, center, size } = this.state
+    const { onCenterChange } = this.props
 
     const panX = pan.x % size
     const panY = pan.y % size
@@ -378,6 +383,10 @@ export class TileMap extends React.PureComponent<Props, State> {
     this.setState({
       pan: newPan,
       center: newCenter,
+    }, () => {
+      if (onCenterChange) {
+        onCenterChange(newCenter);
+      }
     })
   }
 
@@ -405,11 +414,6 @@ export class TileMap extends React.PureComponent<Props, State> {
 
   refCanvas = (canvas: HTMLCanvasElement | null) => {
     this.canvas = canvas
-  }
-
-  handleTarget = () => {
-    const { x, y } = this.props
-    this.setState({ center: { x, y } })
   }
 
   getDz() {

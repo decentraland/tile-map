@@ -54,6 +54,7 @@ export type Props = {
     visible: boolean
   }) => void
   onChange?: (data: { center: Coord; nw: Coord; se: Coord; zoom: number }) => void
+  onCenterChange?: (center: Coord) => void
   /** renderer */
   renderMap: MapRenderer
 }
