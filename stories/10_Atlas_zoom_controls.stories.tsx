@@ -79,7 +79,7 @@ stories.add('10. With zoom controls', () => {
   )
 })
 
-stories.add('11. With zoom controls', () => {
+stories.add('11. With onCenterChange handler', () => {
   const [x, setX] = React.useState<number>()
   const [y, setY] = React.useState<number>()
   return (
