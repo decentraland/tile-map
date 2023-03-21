@@ -77,12 +77,17 @@ export class TileMap extends React.PureComponent<Props, State> {
   }
 
   UNSAFE_componentWillUpdate(nextProps: Props, nextState: State) {
-    const { x, y } = this.props
+    const { x, y, onCenterChange } = this.props
 
     if (
       (x !== nextProps.x || y !== nextProps.y) &&
       (nextProps.x !== nextState.center.x || nextProps.y !== nextState.center.y)
     ) {
+      const center = {
+        x: nextProps.x,
+        y: nextProps.y,
+      }
+  
       nextState = {
         ...nextState,
         center: {
@@ -93,6 +98,10 @@ export class TileMap extends React.PureComponent<Props, State> {
           x: 0,
           y: 0,
         },
+      }
+
+      if (onCenterChange) {
+        onCenterChange(center)
       }
     }
 
@@ -366,6 +375,7 @@ export class TileMap extends React.PureComponent<Props, State> {
 
   updateCenter() {
     const { pan, center, size } = this.state
+    const { onCenterChange } = this.props
 
     const panX = pan.x % size
     const panY = pan.y % size
@@ -379,6 +389,10 @@ export class TileMap extends React.PureComponent<Props, State> {
       pan: newPan,
       center: newCenter,
     })
+
+    if (onCenterChange) {
+      onCenterChange(newCenter);
+    }
   }
 
   renderMap() {
@@ -405,11 +419,6 @@ export class TileMap extends React.PureComponent<Props, State> {
 
   refCanvas = (canvas: HTMLCanvasElement | null) => {
     this.canvas = canvas
-  }
-
-  handleTarget = () => {
-    const { x, y } = this.props
-    this.setState({ center: { x, y } })
   }
 
   getDz() {
