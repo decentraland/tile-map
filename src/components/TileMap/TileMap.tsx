@@ -83,11 +83,6 @@ export class TileMap extends React.PureComponent<Props, State> {
       (x !== nextProps.x || y !== nextProps.y) &&
       (nextProps.x !== nextState.center.x || nextProps.y !== nextState.center.y)
     ) {
-      const center = {
-        x: nextProps.x,
-        y: nextProps.y,
-      }
-  
       nextState = {
         ...nextState,
         center: {
@@ -98,10 +93,6 @@ export class TileMap extends React.PureComponent<Props, State> {
           x: 0,
           y: 0,
         },
-      }
-
-      if (onCenterChange) {
-        onCenterChange(center)
       }
     }
 
@@ -118,7 +109,11 @@ export class TileMap extends React.PureComponent<Props, State> {
     // The coords or the amount of parcels changed, so we need to update the state
     if (nextProps.x !== x || nextProps.y !== y || !this.oldState || isViewportDifferent) {
       this.oldState = newState
-      this.setState(newState)
+      this.setState(newState, () => {
+        if (onCenterChange) {
+          onCenterChange(nextState.center)
+        }
+      })
       this.debouncedHandleChange()
     }
   }
@@ -388,11 +383,11 @@ export class TileMap extends React.PureComponent<Props, State> {
     this.setState({
       pan: newPan,
       center: newCenter,
+    }, () => {
+      if (onCenterChange) {
+        onCenterChange(newCenter);
+      }
     })
-
-    if (onCenterChange) {
-      onCenterChange(newCenter);
-    }
   }
 
   renderMap() {

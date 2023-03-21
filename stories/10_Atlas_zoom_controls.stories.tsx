@@ -78,3 +78,19 @@ stories.add('10. With zoom controls', () => {
     />
   )
 })
+
+stories.add('11. With zoom controls', () => {
+  const [x, setX] = React.useState<number>()
+  const [y, setY] = React.useState<number>()
+  return (
+    <TileMap
+      className="atlas"
+      layers={[atlasLayer]}
+      minSize={3}
+      x={x}
+      y={y}
+      withZoomControls
+      onCenterChange={(center) => { setX(center.x); setY(center.y)}}
+    />
+  )
+})
