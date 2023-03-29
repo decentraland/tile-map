@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { AutoSizer } from 'react-virtualized'
+import AutoSizer from 'react-virtualized-auto-sizer'
 
 import { TileMap } from './TileMap'
 import { Props } from './TileMap.types'
