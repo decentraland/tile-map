@@ -15,17 +15,15 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@types/react-virtualized": "^9.21.2",
     "impetus": "^0.8.8",
     "mouse-wheel": "^1.2.0",
-    "react-virtualized": "^9.22.3",
+    "react-virtualized-auto-sizer": "^1.0.9",
     "touch-pinch": "^1.0.1",
     "touch-position": "^2.0.0"
   },
   "devDependencies": {
-    "@types/react": "^16.4.1",
-    "@types/react-dom": "^18.0.10",
-    "@babel/core": "^7.20.7",
+    "@babel/core": "^7.21.3",
+    "@babel/preset-env": "^7.20.2",
     "@storybook/addon-actions": "^6.5.15",
     "@storybook/addon-essentials": "^6.5.15",
     "@storybook/addon-interactions": "^6.5.15",
@@ -36,14 +34,17 @@
     "@storybook/manager-webpack4": "^6.5.15",
     "@storybook/react": "^6.5.15",
     "@storybook/testing-library": "^0.0.13",
+    "@types/react": "^17.0.55",
+    "@types/react-dom": "^17.0.19",
     "babel-loader": "^8.3.0",
     "css-loader": "^4.3.0",
     "mini-css-extract-plugin": "^1.6.2",
     "postcss": "^8.4.20",
     "postcss-loader": "^4.3.0",
     "postcss-preset-env": "^7.8.3",
-    "react": "^16.8.6",
-    "react-dom": "^16.8.6",
+    "prettier": "^2.8.7",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
     "rimraf": "^2.6.3",
     "style-loader": "^2.0.0",
     "ts-loader": "^8.4.0",
@@ -55,10 +56,5 @@
   "peerDependencies": {
     "react": ">=16.8.6",
     "react-dom": ">=16.8.6"
-  },
-  "prettier": {
-    "semi": false,
-    "singleQuote": true,
-    "printWidth": 90
   }
 }
