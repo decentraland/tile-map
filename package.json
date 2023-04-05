@@ -2,11 +2,14 @@
   "name": "react-tile-map",
   "version": "0.3.3",
   "description": "",
-  "main": "lib/index.js",
-  "typings": "lib/src/index.d.ts",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "start": "start-storybook -p 6006",
-    "build": "rimraf lib && webpack --config webpack.config.js && rimraf lib/stories",
+    "build": "rimraf dist && webpack --config webpack.config.js",
     "build-storybook": "build-storybook",
     "prepublish": "npm run build",
     "deploy": "npm run build-storybook && now alias $(now storybook-static --public) tile-map --scope=decentraland"
