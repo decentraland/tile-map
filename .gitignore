@@ -1,5 +1,7 @@
 *.d.ts
 *.css
-lib
+dist
 node_modules
-lib
+
+.vscode
+.DS_Store
